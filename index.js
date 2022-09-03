@@ -79,18 +79,3 @@ document.getElementById("textbox").addEventListener("keypress", (event) => {
     addItem();
   }
 });
-
-/*
-addButton.onclick = () => {
-  addItem();
-  for (let i = 0; i < queue.length; i++) {
-    const checkboxStatus = document.getElementById(queue[i]);
-    checkboxStatus.addEventListener("click", () => {
-      if (checkboxStatus.checked === true) {
-        console.log(checkboxStatus);
-      }
-      console.log(checkboxStatus);
-    });
-  }
-};
-*/
