@@ -64,7 +64,6 @@ const addItem = () => {
     }
   });
   listItem.appendChild(deleteButton);
-  // add an event listner to delete by id when clicked...
 
   listContainer.appendChild(listItem);
   uniqueID += 1;
