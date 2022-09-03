@@ -78,3 +78,7 @@ body {
   height: 2rem;
   width: 2rem;
 }
+
+.strike-text {
+  text-decoration: line-through;
+}

@@ -30,6 +30,7 @@ const addItem = () => {
       //console.log(`${listItem.id} has been checked`);
       if (!deleteArray.includes(listItem.id)) {
         deleteArray.push(listItem.id);
+        listItem.classList.add("strike-text");
       }
     } else {
       //console.log(`${listItem.id} has been un-checked`);
@@ -38,6 +39,7 @@ const addItem = () => {
           (arrayItem) => arrayItem !== listItem.id
         );
       }
+      listItem.classList.remove("strike-text");
     }
   });
   listItem.appendChild(checkbox);
