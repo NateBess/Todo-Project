@@ -8,10 +8,10 @@
 // Below are the elements from the page
 const addButton = document.getElementById("add-button");
 let uniqueID = 0;
+let deleteArray = [];
 
 const addItem = () => {
   const inputTextbox = document.getElementById("textbox");
-  console.log(inputTextbox.value);
 
   const listContainer = document.getElementById("list-container");
 
@@ -24,12 +24,30 @@ const addItem = () => {
   const checkbox = document.createElement("input");
   checkbox.classList.add("item-checkbox");
   checkbox.setAttribute("type", "checkbox");
+  checkbox.setAttribute("id", `item-checkbox-${uniqueID}`);
+  checkbox.addEventListener("change", (event) => {
+    if (event.target.checked) {
+      //console.log(`${listItem.id} has been checked`);
+      if (!deleteArray.includes(listItem.id)) {
+        deleteArray.push(listItem.id);
+      }
+    } else {
+      //console.log(`${listItem.id} has been un-checked`);
+      if (deleteArray.includes(listItem.id)) {
+        deleteArray = deleteArray.filter(
+          (arrayItem) => arrayItem !== listItem.id
+        );
+      }
+    }
+  });
+  listItem.appendChild(checkbox);
 
   // Creates and modifies item-text containers
   const itemText = document.createElement("div");
   itemText.classList.add("item-text");
   itemText.setAttribute("id", "list-item");
   itemText.textContent = inputTextbox.value;
+  listItem.appendChild(itemText);
 
   // Creates and modifies delete buttons
   const deleteButton = document.createElement("input");
@@ -37,16 +55,18 @@ const addItem = () => {
   deleteButton.setAttribute("type", "button");
   deleteButton.setAttribute("value", "X");
   deleteButton.addEventListener("click", () => {
-    listItem.remove();
+    if (deleteArray.includes(listItem.id)) {
+      listItem.remove();
+    } else {
+      ("Can't delete item, has not been checked!");
+    }
   });
+  listItem.appendChild(deleteButton);
   // add an event listner to delete by id when clicked...
 
-  // Combines them together to add the element
-  listItem.appendChild(checkbox);
-  listItem.appendChild(itemText);
-  listItem.appendChild(deleteButton);
   listContainer.appendChild(listItem);
   uniqueID += 1;
+  return uniqueID;
 };
 
 addButton.onclick = () => {
@@ -56,6 +76,20 @@ addButton.onclick = () => {
 document.getElementById("textbox").addEventListener("keypress", (event) => {
   if (event.key === "Enter") {
     addItem();
-    docu;
   }
 });
+
+/*
+addButton.onclick = () => {
+  addItem();
+  for (let i = 0; i < queue.length; i++) {
+    const checkboxStatus = document.getElementById(queue[i]);
+    checkboxStatus.addEventListener("click", () => {
+      if (checkboxStatus.checked === true) {
+        console.log(checkboxStatus);
+      }
+      console.log(checkboxStatus);
+    });
+  }
+};
+*/
