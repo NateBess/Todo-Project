@@ -7,7 +7,12 @@ View this project [here](https://natebess.github.io/Todo-Project/)
 <br>
 
 <image src="TO-DO-APP.png">
-Uses the following: JavaScript, HTML, and CSS
+
+## Technologies
+
+-JavaScript
+-HTML
+-CSS
 
 ## Summary
 
