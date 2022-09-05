@@ -7,10 +7,9 @@ View this project [here](https://natebess.github.io/Todo-Project/)
 <br>
 
 <image src="TO-DO-APP.png">
+Uses the following: JavaScript, HTML, and CSS
 
 ## Summary
-
-Uses the following: JavaScript, HTML, and CSS
 
 I built this as a technical assessment for Andy Sterkowitz's Software Development MasterMind Program.
 It is a simple webpage that shows a running digital clock.
