@@ -10,9 +10,11 @@ View this project [here](https://natebess.github.io/Todo-Project/)
 
 ## Technologies
 
--JavaScript
--HTML
--CSS
+<ul>
+<li>JavaScript</li>
+<li>HTML</li>
+<li>CSS</li>
+</ul>
 
 ## Summary
 
