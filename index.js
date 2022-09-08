@@ -1,39 +1,38 @@
-/* TO-DO APP RULES
--Project will be written in: HTML, CSS, JavaScript
--No Javascript libraries or frameworks are allowed
--No following tutorials of todo apps/projects
--No copying code of other existing todo apps/projects
-*/
-
-// Below are the elements from the page
 const addButton = document.getElementById("add-button");
-let uniqueID = 0;
+const inputTextbox = document.getElementById("textbox");
+const listContainer = document.getElementById("list-container");
+
 let deleteArray = [];
 
+const getUniqueID = () => {
+  return Math.random();
+};
+
 const addItem = () => {
-  const inputTextbox = document.getElementById("textbox");
+  if (!inputTextbox.value) return;
+  const uniqueID = getUniqueID();
+  const inputText = inputTextbox.value;
+  inputTextbox.value = "";
+  const newListItem = createItem(inputText, uniqueID);
+  listContainer.appendChild(newListItem);
+};
 
-  const listContainer = document.getElementById("list-container");
-
-  // Creates and modifies list-item containers
+const createItem = (inputText, uniqueID) => {
   const listItem = document.createElement("div");
   listItem.classList.add("list-item");
-  listItem.setAttribute("id", `list-item-${uniqueID}`);
+  listItem.setAttribute("id", `${uniqueID}`);
 
-  // Creates and modifies checkbox's
   const checkbox = document.createElement("input");
   checkbox.classList.add("item-checkbox");
   checkbox.setAttribute("type", "checkbox");
-  checkbox.setAttribute("id", `item-checkbox-${uniqueID}`);
+  checkbox.setAttribute("id", `${uniqueID}`);
   checkbox.addEventListener("change", (event) => {
     if (event.target.checked) {
-      //console.log(`${listItem.id} has been checked`);
       if (!deleteArray.includes(listItem.id)) {
         deleteArray.push(listItem.id);
         listItem.classList.add("strike-text");
       }
     } else {
-      //console.log(`${listItem.id} has been un-checked`);
       if (deleteArray.includes(listItem.id)) {
         deleteArray = deleteArray.filter(
           (arrayItem) => arrayItem !== listItem.id
@@ -48,7 +47,7 @@ const addItem = () => {
   const itemText = document.createElement("div");
   itemText.classList.add("item-text");
   itemText.setAttribute("id", "list-item");
-  itemText.textContent = inputTextbox.value;
+  itemText.textContent = inputText;
   listItem.appendChild(itemText);
 
   // Creates and modifies delete buttons
@@ -57,25 +56,14 @@ const addItem = () => {
   deleteButton.setAttribute("type", "button");
   deleteButton.setAttribute("value", "X");
   deleteButton.addEventListener("click", () => {
-    if (deleteArray.includes(listItem.id)) {
-      listItem.remove();
-    } else {
-      ("Can't delete item, has not been checked!");
-    }
+    if (deleteArray.includes(listItem.id)) listItem.remove();
   });
   listItem.appendChild(deleteButton);
-
-  listContainer.appendChild(listItem);
-  uniqueID += 1;
-  return uniqueID;
+  return listItem;
 };
 
-addButton.onclick = () => {
-  addItem();
-};
+addButton.onclick = () => addItem();
 
 document.getElementById("textbox").addEventListener("keypress", (event) => {
-  if (event.key === "Enter") {
-    addItem();
-  }
+  if (event.key === "Enter") addItem();
 });
